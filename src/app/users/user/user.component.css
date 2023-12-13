@@ -1,0 +1,10 @@
+td {
+    background-color:silver;
+    color: green;
+    padding:5px;
+    border: 1px solid #fff;
+  }
+  button {
+    background: white;
+    color: red;
+  }
