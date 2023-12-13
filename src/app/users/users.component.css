@@ -1,4 +1,4 @@
-table{
+table {
   border: 1px solid #c0c0c0;
   border-collapse: collapse;
   margin: auto;
@@ -7,4 +7,8 @@ table{
 th {
   background: #000;
   color: green;
+  padding: 5px;
+}
+th + th {
+  border-left: 1px solid #fff; /* Aggiungi bordo destro solo agli elementi th che seguono un altro th */
 }

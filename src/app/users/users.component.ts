@@ -13,4 +13,7 @@ export class UsersComponent {
   constructor(private service: UserService) {
     this.users = service.getUsers();
   }
+  onDeletedUser(user: any): void{
+    this.service.deleteUser(user);
+  }
 }
