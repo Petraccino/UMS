@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
+import { User } from '../interface/user.interface';
 
 @Component({
   selector: 'app-users',
@@ -7,13 +8,15 @@ import { UserService } from '../service/user.service';
   templateUrl: 'users.component.html',
   styleUrls: ['users.component.css'],
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit{
   title = 'Users';
-  public users: any[] = [];
+  public users: User[] = [];
   constructor(private service: UserService) {
     this.users = service.getUsers();
   }
-  onDeletedUser(user: any): void{
+  ngOnInit(): void {
+  }
+  onDeletedUser(user: User): void{
     this.service.deleteUser(user);
   }
 }

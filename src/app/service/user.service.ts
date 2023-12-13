@@ -1,10 +1,11 @@
+import { User } from './../interface/user.interface';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  users: any[] = [
+  users: User[] = [
     {
       name: 'Hidran1',
       lastname: 'Arias',
@@ -42,10 +43,10 @@ export class UserService {
       age: 43,
     },
   ];
-  getUsers() {
+  getUsers(): User[] {
     return this.users;
   }
-  deleteUser(user: any) {
+  deleteUser(user: User): void {
     const index = this.users.indexOf(user);
     if (index > -1) {
       this.users.splice(index, 1);
