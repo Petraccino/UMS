@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app.routes';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, UserComponent],
+  declarations: [AppComponent, UsersComponent, UserComponent, UserDetailsComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

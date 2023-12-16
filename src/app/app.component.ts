@@ -1,3 +1,4 @@
+import { User } from './interface/user.interface';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'UMS';
+  userSelected: User | undefined;
+  updateUser(user: User): void {
+    this.userSelected = user;
+  }
 }

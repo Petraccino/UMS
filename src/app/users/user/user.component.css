@@ -4,7 +4,12 @@ td {
     padding:5px;
     border: 1px solid #fff;
   }
-  button {
+
+  button.delete {
     background: white;
     color: red;
+  }
+  button.update {
+    background: white;
+    color: blue;
   }
