@@ -10,8 +10,19 @@ import { NgForm } from '@angular/forms';
   inputs: ['user'],
 })
 export class UserDetailsComponent implements OnInit {
-  user: User = new User();
-  constructor(private service: UserService) {}
+  private userCopy: User;
+  private __user: User;
+  set user(user: User){
+    this.__user = user;
+    this.userCopy = Object.assign({}, user);
+  }
+  get user(){
+    return this.__user;
+  }
+  constructor(private service: UserService) {
+    this.__user = new User();
+    this.userCopy = new User();
+  }
   ngOnInit(): void {}
   saveUser(): void {
     if (this.user.id > 0) {
@@ -25,7 +36,7 @@ export class UserDetailsComponent implements OnInit {
     if(this.user.id === 0){
       this.user = new User();
     } else {
-      form.reset();
+      this.user = this.userCopy;
     }
   }
 }
