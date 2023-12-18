@@ -1,4 +1,4 @@
-import { User } from './../interface/user.interface';
+import { User } from './../classes/user';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
   users: User[] = [
     {
+      id: 1,
       name: 'Hidran1',
       lastname: 'Arias',
       email: 'hidran@gmail.com',
@@ -16,6 +17,7 @@ export class UserService {
       age: 43,
     },
     {
+      id: 2,
       name: 'Hidran2',
       lastname: 'Arias',
       email: 'hidran@gmail.com',
@@ -25,6 +27,7 @@ export class UserService {
       age: 43,
     },
     {
+      id: 3,
       name: 'Hidran3',
       lastname: 'Arias',
       email: 'hidran@gmail.com',
@@ -34,6 +37,7 @@ export class UserService {
       age: 43,
     },
     {
+      id: 4,
       name: 'Hidran4',
       lastname: 'Arias',
       email: 'hidran@gmail.com',
@@ -53,5 +57,17 @@ export class UserService {
     } else {
       alert('El non trovato');
     }
+  }
+
+  updateUser(user: User): void {
+    const index = this.users.findIndex((userIndex) => userIndex.id == user.id);
+    alert(index);
+    if (index !== -1) {
+      this.users[index] = {...user};
+    }
+  }
+
+  createUser(user: User): void {
+    this.users.splice(0,0, {...user});
   }
 }
