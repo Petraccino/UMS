@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "name": "Gianluca",
+      "lastname": "Moro",
+      "email": "moretta@gmail.com",
+      "fiscalcode": "RSAHTP72M22Z444S",
+      "province": "Monza",
+      "phone": "3378211",
+      "age": 32,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Hidran2",
+      "lastname": "Arias",
+      "email": "hidran@gmail.com",
+      "fiscalcode": "RSAHRN72M22Z444S",
+      "province": "Torino",
+      "phone": "454545455",
+      "age": 43
+    },
+    {
+      "id": 3,
+      "name": "Hidran3",
+      "lastname": "Arias",
+      "email": "hidran@gmail.com",
+      "fiscalcode": "RSAHRN72M22Z444S",
+      "province": "Torino",
+      "phone": "454545455",
+      "age": 43
+    },
+    {
+      "name": "Marco",
+      "lastname": "petraccini",
+      "email": "amicomio@gmail.com",
+      "fiscalcode": "RSATY72M22Z5434S",
+      "province": "Roma",
+      "phone": "454545455",
+      "age": 27,
+      "id": 5
+    },
+    {
+      "name": "Giorgia",
+      "lastname": "Morelli",
+      "email": "giorgia@gmail.com",
+      "fiscalcode": "GTRYSY72M22Z5434S",
+      "province": "Monterotondo",
+      "phone": "3356291",
+      "age": 24,
+      "id": 6
+    }
+  ]
+}
