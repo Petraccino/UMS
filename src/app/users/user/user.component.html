@@ -1,19 +1,26 @@
-<td>{{user.name}}</td>
-<td>{{user.lastname}}</td>
-<td>{{user.fiscalcode}}</td>
-<td>{{user.email}}</td>
-<td>{{user.phone}}</td>
-<td>{{user.province}}</td>
-<td>{{user.age}}</td>
+<td>{{ user.name }}</td>
+<td>{{ user.lastname }}</td>
+<td>{{ user.fiscalcode }}</td>
+<td>{{ user.email }}</td>
+<td>{{ user.phone }}</td>
+<td>{{ user.province }}</td>
+<td>{{ user.age }}</td>
 <td>
-    <div class="row">
-        <div class="col-sm">
-    <button class="btn btn-sm btn-primary" (click)="deleteUser()"><fa-icon [icon]="faTrash"></fa-icon></button>
+  <div class="row">
+    <div class="col-sm">
+      <button class="btn btn-sm btn-danger w-100"  (click)="deleteUser()">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
     </div>
     <div class="col-sm">
-    <button class="btn btn-sm btn-danger" (click)="updateUser()"><fa-icon [icon]="faWrench"></fa-icon></button>
+      <button class="btn btn-sm btn-primary w-100" (click)="updateUser()">
+        <fa-icon [icon]="faWrench"></fa-icon>
+      </button>
     </div>
-</div>
+    <div class="col-sm">
+      <button class="btn btn-sm btn-success w-100" (click)="infoUser()">
+        <fa-icon [icon]="faInfo"></fa-icon>
+      </button>
+    </div>
+  </div>
 </td>
-
-

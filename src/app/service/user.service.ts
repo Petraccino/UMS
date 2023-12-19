@@ -50,6 +50,9 @@ export class UserService {
   getUsers(): User[] {
     return this.users;
   }
+  getUser(id: number): User | undefined {
+    return this.users.find( user => user.id === id)
+  }
   deleteUser(user: User): void {
     const index = this.users.indexOf(user);
     if (index > -1) {
