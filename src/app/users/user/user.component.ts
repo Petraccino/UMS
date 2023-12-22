@@ -4,6 +4,8 @@ import { faWrench } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'tr[app-user]',
@@ -19,7 +21,7 @@ export class UserComponent implements OnInit {
   user: User = new User();
   onDeletedUser = new EventEmitter();
   onSelectedUser = new EventEmitter();
-  constructor(private route: Router) {}
+  constructor(private route: Router, private service: UserService) {}
   ngOnInit(): void {}
   deleteUser(): void {
     this.onDeletedUser.emit(this.user);

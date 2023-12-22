@@ -4,24 +4,24 @@ import { User } from '../../classes/user';
 import { UserService } from '../../service/user.service';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
   selector: 'app-user-data',
   templateUrl: './user-data.component.html',
-  styleUrl: './user-data.component.css'
+  styleUrl: './user-data.component.css',
 })
-export class UserDataComponent implements OnInit{
+export class UserDataComponent implements OnInit {
   user: User = new User();
   faList = faList;
-  constructor (private activatedRoute: ActivatedRoute, private service: UserService, private route: Router) {
-
-  }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private service: UserService,
+    private route: Router
+  ) {}
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      const user = this.service.getUser(Number(params['id']));
-      if (user) {
-        this.user = user;
-      }
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.service
+        .getUser(Number(params.get('id')))
+        .subscribe((user) => (this.user = user));
     });
   }
   listUsers(): void {

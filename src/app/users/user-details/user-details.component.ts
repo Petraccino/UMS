@@ -35,20 +35,24 @@ export class UserDetailsComponent implements OnInit {
     this.userCopy = new User();
   }
   ngOnInit(): void {
-    this.activatedRuote.params.subscribe((params) => {
-      const user = this.service.getUser(Number(params['id']));
-      if (user) {
-        this.user = user;
+    this.activatedRuote.paramMap.subscribe((params) => {
+      if (params.get('id')) {
+        this.service
+          .getUser(Number(params.get('id')))
+          .subscribe((user) => (this.user = user));
       }
     });
   }
   saveUser(): void {
+    let obj;
     if (this.user.id > 0) {
-      this.service.updateUser(this.user);
+      obj = this.service.updateUser(this.user);
     } else {
-      this.service.createUser(this.user);
+      obj = this.service.createUser(this.user);
     }
-    this.router.navigateByUrl('/users')
+    obj.subscribe(() => {
+      this.router.navigateByUrl('/users');
+    });
   }
 
   resetForm(form: NgForm): void {
