@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../classes/user';
 import { UserService } from '../../service/user.service';
 import { NgForm } from '@angular/forms';
@@ -14,6 +14,7 @@ import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
   inputs: ['user'],
 })
 export class UserDetailsComponent implements OnInit {
+  @ViewChild('form') form!: NgForm;
   faList = faList;
   faSlash = faSlash;
   faFloppyDisk = faFloppyDisk;
@@ -50,9 +51,11 @@ export class UserDetailsComponent implements OnInit {
     } else {
       obj = this.service.createUser(this.user);
     }
-    obj.subscribe(() => {
+    if (this.form.valid){
+      obj.subscribe(() => {
       this.router.navigateByUrl('/users');
     });
+  }
   }
 
   resetForm(form: NgForm): void {

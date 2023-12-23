@@ -1,4 +1,4 @@
-<div class="container-fluid" *ngIf="user.age != 0">
+<div class="container-fluid" *ngIf="user && user.age != 0">
 <table class="table table-light table-striped">
   <tbody>
     <tr>
@@ -39,6 +39,6 @@
   </tfoot>
 </table>
 </div>
-<div *ngIf="user.age == 0" class="container mt-3">
+<div *ngIf="!user" class="container mt-3">
     <h2 class="alert alert-warning">No user found</h2>
   </div>

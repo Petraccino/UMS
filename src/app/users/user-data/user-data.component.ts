@@ -10,7 +10,7 @@ import { faList } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './user-data.component.css',
 })
 export class UserDataComponent implements OnInit {
-  user: User = new User();
+  user!: User;
   faList = faList;
   constructor(
     private activatedRoute: ActivatedRoute,
