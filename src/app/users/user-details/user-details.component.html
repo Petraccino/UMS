@@ -12,7 +12,12 @@
       name="name"
       id="name"
     />
-    <div class="alert-danger small" *ngIf="firstname.errors && firstname.touched && firstname.dirty">Error format</div>
+    <div
+      class="alert-danger small"
+      *ngIf="firstname.errors && firstname.touched && firstname.dirty"
+    >
+      Error format
+    </div>
   </div>
   <div class="form-group">
     <label for="lastname">Lastname</label>
@@ -28,7 +33,12 @@
       name="lastname"
       id="lastname"
     />
-    <div class="alert-danger small" *ngIf="lastname.errors && lastname.touched && lastname.dirty">Error format</div>
+    <div
+      class="alert-danger small"
+      *ngIf="lastname.errors && lastname.touched && lastname.dirty"
+    >
+      Error format
+    </div>
   </div>
   <div class="form-group">
     <label for="email">Email</label>
@@ -43,7 +53,12 @@
       name="email"
       id="email"
     />
-    <div class="alert-danger small" *ngIf="email.errors && email.touched && email.dirty">Error format</div>
+    <div
+      class="alert-danger small"
+      *ngIf="email.errors && email.touched && email.dirty"
+    >
+      Error format
+    </div>
   </div>
   <div class="form-group">
     <label for="fiscalcode">Fiscalcode</label>
@@ -59,7 +74,12 @@
       name="fiscalcode"
       id="fiscalcode"
     />
-    <div class="alert-danger small" *ngIf="fiscalcode.errors && fiscalcode.touched && fiscalcode.dirty">Error format</div>
+    <div
+      class="alert-danger small"
+      *ngIf="fiscalcode.errors && fiscalcode.touched && fiscalcode.dirty"
+    >
+      Error format
+    </div>
   </div>
   <div class="form-group">
     <label for="province">Province</label>
@@ -75,7 +95,12 @@
       name="province"
       id="province"
     />
-    <div class="alert-danger small" *ngIf="province.errors && province.touched && province.dirty">Error format</div>
+    <div
+      class="alert-danger small"
+      *ngIf="province.errors && province.touched && province.dirty"
+    >
+      Error format
+    </div>
   </div>
   <div class="form-group">
     <label for="phone">Phone</label>
@@ -90,7 +115,12 @@
       id="phone"
     />
   </div>
-  <div class="alert-danger small" *ngIf="phone.errors && phone.touched && phone.dirty">Error format</div>
+  <div
+    class="alert-danger small"
+    *ngIf="phone.errors && phone.touched && phone.dirty"
+  >
+    Error format
+  </div>
   <div class="form-group">
     <label for="age">Age</label>
     <input
@@ -105,6 +135,19 @@
       id="age"
     />
     <div *ngIf="user.age == 0 && form.submitted">Age not valid</div>
+    <div class="container flush--bottom">
+      <div
+        *ngIf="form.submitted && form.invalid"
+        class="alert alert-danger small text-center"
+      >
+        Il form non è valido. Controlla i campi:
+        <ul>
+          <li *ngFor="let control of form.controls | keyvalue">
+            <div *ngIf="control.value.invalid">{{ control.key }}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="form-group form-footer d-flex justify-content-center m-2">
     <button class="btn btn-lg btn-success w-10" (click)="saveUser()">
