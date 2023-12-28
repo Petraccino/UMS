@@ -9,8 +9,16 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#" routerLink="/">Users</a>
           </li>
+          <ng-container *ngIf="!(isLoggedIn$ | async)">
           <li class="nav-item">
-            <a class="nav-link active" href="#" routerLink="users/new">New user</a>
+            <a class="nav-link active" (click)="login()" href="#" routerLink="login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="signUp()" href="#" routerLink="/signup">Sign up</a>
+          </li>
+        </ng-container>
+          <li class="nav-item" *ngIf="(isLoggedIn$ | async)">
+            <a class="nav-link active" (click)="logout()" href="#" routerLink="/logout">Logout</a>
           </li>
         </ul>
         <form class="d-flex" role="search">

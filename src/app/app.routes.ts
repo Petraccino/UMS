@@ -3,16 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './users/user/user.component';
 import { UsersComponent } from './users/users.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 import { UserDataComponent } from './users/user-data/user-data.component';
+import { LoginComponent } from './login/login.component';
+import { RouteGuardService } from './service/route-guard.service';
+import { SignupComponent } from './signup/signup.component';
 
 export const routes: Routes = [
     {
         path: 'users',
         pathMatch: 'full',
-        component: UsersComponent
+        component: UsersComponent,
+        canActivate: [
+            RouteGuardService
+        ]
     },
     {
         path: '',
@@ -40,6 +46,16 @@ export const routes: Routes = [
         component: UserDataComponent
     },
     {
+        path: 'login',
+        pathMatch: 'full',
+        component: LoginComponent
+    },
+    {
+        path: 'signup',
+        pathMatch: 'full',
+        component: SignupComponent
+    },
+    {
         path: '**',
         redirectTo: 'users'
     }
@@ -50,15 +66,19 @@ export const routes: Routes = [
         UsersComponent,
         UserComponent,
         UserDetailsComponent,
-        UserDataComponent
+        UserDataComponent,
+        LoginComponent
     ],
     imports: [
         RouterModule.forRoot(routes),
         FormsModule,
         FontAwesomeModule,
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+    ]
 })
 export class AppRoutingModule{
     
