@@ -67,7 +67,8 @@ export const routes: Routes = [
         UserComponent,
         UserDetailsComponent,
         UserDataComponent,
-        LoginComponent
+        LoginComponent,
+        SignupComponent
     ],
     imports: [
         RouterModule.forRoot(routes),
