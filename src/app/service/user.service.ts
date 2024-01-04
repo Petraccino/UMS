@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './../classes/user';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, map } from 'rxjs';
+import { AuthService } from './auth.service';
 
 interface UsersResponse {
   body: User[];
@@ -22,11 +23,15 @@ interface UserResponse {
 export class UserService {
   apiurl = environment.API_URL;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getUsers(): Observable<User[]> {
     return this.http
-      .get<UsersResponse>(this.apiurl)
+      .get<UsersResponse>(this.apiurl, {
+        headers: new HttpHeaders({
+          Authorization: "Bearer "+ this.auth.getToken()
+        })
+      })
       .pipe(map((resp) => resp.body));
   }
   getUser(id: number): Observable<User> {
