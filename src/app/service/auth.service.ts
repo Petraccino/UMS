@@ -1,35 +1,55 @@
+import { User } from './../classes/user';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { jwt } from '../interface/jwt';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
-  private isLogged: BehaviorSubject<boolean>;
-  public isLoggedIn$: Observable<boolean>;
+  private isLogged: BehaviorSubject<User | null>;
+  public isLoggedIn$: Observable<User | null>;
+  apiauthurl = environment.API_AUTH_URL;
   token: string = 'token';
 
-  constructor() {
-    this.isLogged = new BehaviorSubject<boolean>(this.hasToken());
+  constructor(private http: HttpClient) {
+    this.isLogged = new BehaviorSubject<User | null>(this.getUser());
     this.isLoggedIn$ = this.isLogged.asObservable();
   }
-  signIn(email: string, password: string): void {
-    localStorage.setItem('jwt', this.token);
-    this.isLogged.next(true);
+  signIn(email: string, password: string): Observable<User> {
+    return this.http
+      .post<jwt>(this.apiauthurl + '/login', { email, password })
+      .pipe(
+        switchMap((response) => {
+          localStorage.setItem('jwt', response.access_token);
+          const user = new User();
+          user.name = response.name;
+          user.email = response.email;
+          this.isLogged.next(user);
+          localStorage.setItem('user', JSON.stringify(user));
+          return of(user);
+        })
+      );
   }
   signUp(usurname: string, email: string, password: string): void {
     localStorage.setItem('jwt', this.token);
-    this.isLogged.next(true);
+    //this.isLogged.next(true);
   }
   isUserLogin(): boolean {
-    return this.hasToken();
+    return !!this.getUser();
   }
   logOut(): void {
     localStorage.removeItem('jwt');
-    this.isLogged.next(false);
+    localStorage.removeItem('user');
+    //this.isLoggedInSubject.next(null);
   }
-  private hasToken(): boolean {
-    return Boolean(localStorage.getItem('jwt'));
+  private getUser(): User | null {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      return null;
+    }
+    return JSON.parse(user);
   }
 }

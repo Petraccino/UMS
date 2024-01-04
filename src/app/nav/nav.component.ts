@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../service/auth.service';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../classes/user';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class NavComponent implements OnInit {
   OnNewUser = new EventEmitter();
-  public isLoggedIn$: Observable<boolean>;
+  public isLoggedIn$: Observable< User | null>;
   ngOnInit(): void {}
   constructor(private auth: AuthService, private router: Router) {
     this.isLoggedIn$ = auth.isLoggedIn$;
