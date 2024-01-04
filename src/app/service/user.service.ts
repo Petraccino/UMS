@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, map } from 'rxjs';
 import { AuthService } from './auth.service';
+import { HeaderService } from './header.service';
 
 interface UsersResponse {
   body: User[];
@@ -23,15 +24,15 @@ interface UserResponse {
 export class UserService {
   apiurl = environment.API_URL;
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private header: HeaderService
+  ) {}
 
   getUsers(): Observable<User[]> {
     return this.http
-      .get<UsersResponse>(this.apiurl, {
-        headers: new HttpHeaders({
-          Authorization: "Bearer "+ this.auth.getToken()
-        })
-      })
+      .get<UsersResponse>(this.apiurl)
       .pipe(map((resp) => resp.body));
   }
   getUser(id: number): Observable<User> {

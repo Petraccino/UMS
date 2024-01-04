@@ -30,8 +30,7 @@ export class LoginComponent implements OnInit{
     this.auth.signIn(email, password).subscribe (
       response => {
         if ( response ) {
-          console.log(response, 'login');
-          //this.router.navigateByUrl('');
+          this.router.navigateByUrl('');
         }
       }
     )
