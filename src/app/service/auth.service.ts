@@ -1,7 +1,7 @@
 import { User } from './../classes/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, last, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { jwt } from '../interface/jwt';
 
